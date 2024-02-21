@@ -1,0 +1,208 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>   
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Item Details</title>
+      
+    <style>@import url("https://fonts.googleapis.com/css2?family=Vollkorn&display=swap");
+
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        width: 100%;
+        height: 100vh;
+  background: #fdfbfb;
+
+        background-position: center;
+        background-repeat: repeat;
+        background-size: 300px;
+        align-items: center;
+        justify-content: center;
+
+        
+      }
+
+    
+
+
+.box {
+  position: relative;
+  margin: 40px auto;
+  width: 90%; /* Adjusted to 90% width */
+  max-width: 1000px; /* Setting maximum width to 1400px */
+  background: #fff;
+  border-radius: 2px;
+}
+
+.box::before,
+.box::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  width: 40%;
+  height: 10px;
+  box-shadow: 0 5px 14px rgba(0,0,0,.7);
+  z-index: -1;
+  transition: all .3s ease-in-out;
+}
+
+.box::before {
+  top: 90%;
+
+  left: 15px;
+  transform: skew(-5deg) rotate(-5deg);
+}
+
+.box::after {
+  top: 90%;
+  right: 15px;
+  transform: skew(5deg) rotate(5deg);
+}
+
+.box:hover::before,
+.box:hover::after {
+  box-shadow: 0 2px 14px rgba(0,0,0,.4);
+}
+
+.box:hover::before {
+  left: 5px;
+}
+
+.box:hover::after {
+  right: 5px;
+}
+ 
+      .l-card__text{
+
+        flex-direction: column;
+  justify-content: space-between;
+
+    padding: 35px;
+    margin: 35px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  background:url("/men.jpg");
+  position: relative;
+  margin: 40px auto;
+  background: #f6eee3   ;
+  border-radius: 2px;
+
+ 
+  
+
+      }
+
+      .l-card{
+        margin: 50px;
+      }
+      div.maint {
+        font-size: 30px;
+        color: #000000;   
+        font-weight: 700;  
+      
+      }
+      p strongt{
+        color: #000000;
+        padding: 0 10px 0 0;
+        font-size: 22px;
+        font-weight: 600 !important;
+      }
+      
+      .l-card__text p {
+        font-size: 20px;
+        font-family: "Vollkorn", serif;
+        font-weight: 400;
+        color: #000023;
+        text-align: left;
+      }
+      .copied-text{
+        font-size: 16px;
+        color: black;
+        transition: .5s;
+      }
+      .copy-btn{
+        padding: 5px;
+        align-items: center;
+      }
+    
+  
+    
+      </style>
+        <% message?.forEach(element => { %>
+
+    <body>
+      <main class="l-card">
+        <div class="l-card__text box">
+          <!-- <img src="/men.jpg" alt="" width=""> -->
+          
+            <div class="info">
+              <div class="item">
+            <p><div class="maint"><%= element.itemName %></div></p>
+            
+          </div>
+              <p><strongt >Type:</strongt> "<%= element.type %>"</p>
+              <p><strongt >Category:</strongt> "<%= element.category %>"</p>
+              <p><strongt >Price:</strongt> "$<%= element.price %>"</p>
+              <p><strongt >Description:</strongt> "<%= element.description %>"</p>
+              <p><strongt >Restaurant:</strongt>"<%= element.restaurant.restName %>"</p>
+              <p><strongt >Location:</strongt>"<%= element.restaurant.location %>"</p>
+              <p style="align-items: center;">
+                <strongt>Menu Id:</strongt> "<%= element.restaurant._id %>" 
+                <button class="copy-btn" data-id="<%= element.restaurant._id %>">Copy Menu ID</button>
+                <span class="copied-text" style="opacity:0;">Copied!</span>
+              </p>
+            </div>
+          
+        </div>
+      
+      </main>
+      
+        <!-- Script to handle copying the Menu Id -->
+        <script>
+          document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+              const id = button.getAttribute('data-id');
+              copyToClipboard(id, button);
+            });
+          });
+      
+          function copyToClipboard(text, button) {
+            const input = document.createElement('input');
+            input.value = text;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            
+            const copiedText = button.parentNode.querySelector('.copied-text');
+            copiedText.style.opacity = '1';
+
+            setTimeout(() => {
+              copiedText.style.opacity = '0';
+            }, 2000);
+          }
+        </script>
+      </body>
+      <% }) %>
+      
+  
+ 
+
+
+</html>
