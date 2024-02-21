@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>   
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Item Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .info {
+            margin-top: 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <% message?.forEach(element => { %>
+    <div class="container">
+        <div class="item">
+            <div class="title"><%= element.itemName %></div>
+            <div class="info">
+                <p><strong>Type:</strong> <%= element.type %></p>
+                <p><strong>Category:</strong> <%= element.category %></p>
+                <p><strong>Price:</strong> $<%= element.price %></p>
+                <p><strong>Description:</strong> <%= element.description %></p>
+                <p><strong>Restaurant:</strong> <%= element.restaurant.restName %></p>
+                <p><strong>Location:</strong> <%= element.restaurant.location %></p>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</body>
+</html>
