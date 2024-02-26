@@ -6,7 +6,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "viraniparth6@gmail.com",
-    pass: "zbwadukgatpmnvnl",
+    pass: "djvncjjextggiime",
   },
 });
 
@@ -36,7 +36,7 @@ const send_Mail = async (to, data, subject) => {
   let mySub = `Welcome to Xometo - Your Ultimate Food Delivery Destination!`;
   try {
     return transporter.sendMail({
-      from: "<viraniparth6@gmail. com>",
+      from: "<viraniparth6@gmail.com>",
       to,
       subject: mySub,
       text: maildata,

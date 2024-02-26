@@ -1,5 +1,6 @@
 const { paymentService } = require("../services");
 
+// GET Payment
 const getPayment = async (req, res) => {
   const payment = await paymentService.getPayment();
   console.log(payment, "payment get");
@@ -8,6 +9,8 @@ const getPayment = async (req, res) => {
     data: payment,
   });
 };
+
+// ADD Payment
 const addPayment = async (req, res) => {
   try {
     const body = req.body;
@@ -29,6 +32,8 @@ const addPayment = async (req, res) => {
   }
 };
 
+// UPDATE Payment
+
 const updatePayment = async (req, res) => {
   try {
     const id = req.parms.id;
@@ -47,6 +52,8 @@ const updatePayment = async (req, res) => {
     });
   }
 };
+
+// DELETE Payment
 
 const deletePayment = async (req, res) => {
   try {
@@ -73,5 +80,5 @@ module.exports = {
   addPayment,
   getPayment,
   updatePayment,
-  deletePayment
+  deletePayment,
 };

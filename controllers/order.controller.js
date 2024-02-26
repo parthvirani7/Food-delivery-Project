@@ -12,6 +12,8 @@ const getOrder = async (req, res) => {
   });
 };
 
+// ADD Order
+
 const addOrder = async (req, res) => {
   try {
     const body = req.body;
@@ -31,6 +33,8 @@ const addOrder = async (req, res) => {
   }
 };
 
+// UPDATE Order
+
 const updateorder = async (req, res) => {
   try {
     const id = req.params.id;
@@ -46,6 +50,9 @@ const updateorder = async (req, res) => {
     res.status(400).json({ success: false, message: err.message });
   }
 };
+
+// DELETE Order
+
 const deleteorder = async (req, res) => {
   try {
     console.log(req.params);

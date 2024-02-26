@@ -4,15 +4,17 @@ const { menuService } = require("../services");
 
 const getMenu = async (req, res) => {
   const menu = await menuService.getMenu();
-  console.log(menu, "menu get");
+  // console.log(menu, "menu get");
 
-  res.render("./allmenu.ejs",{message:menu})
+  res.render("./allmenu.ejs", { message: menu });
 
   // res.status(200).json({
   //   message: "menu get success",
   //   data: menu,
   // });
 };
+
+// ADD Menu
 
 const addMenu = async (req, res) => {
   try {
@@ -22,9 +24,10 @@ const addMenu = async (req, res) => {
     const menu = await menuService.addMenu(body);
 
     if (!menu) {
-      throw new Error("something went wrong");
+      throw new Error("Something went wrong");
     }
     res.render("./menulist.ejs", { menu: menu });
+
 
     // res.status(201).json({
     //   message: "Menu Created success",
@@ -35,6 +38,8 @@ const addMenu = async (req, res) => {
   }
 };
 
+// UPDATE Menu
+
 const updateMenu = async (req, res) => {
   try {
     const id = req.params.id;
@@ -42,13 +47,15 @@ const updateMenu = async (req, res) => {
     console.log(id, body);
     const menu = await menuService.updateMenu(id, body);
     res.status(200).json({
-      message: "menu updated success",
+      message: "Menu updated success",
       data: menu,
     });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
   }
 };
+
+// DELETE Menu
 const deleteMenu = async (req, res) => {
   try {
     console.log(req.params);

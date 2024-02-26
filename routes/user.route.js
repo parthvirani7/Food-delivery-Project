@@ -8,10 +8,13 @@ const route = express.Router();
 route.get(
   "/profile",
   authenticate,
-  restrict(["user"]),
+  restrict(["admin",'user']),
   userController.getProfile
 );
-route.get("/get", authenticate, restrict(["admin"]), userController.getUser);
+route.get("/get"
+, authenticate
+, restrict(["admin"])
+, userController.getUser);
 route.post(
   "/register",
   validate(userValidation.addUser),

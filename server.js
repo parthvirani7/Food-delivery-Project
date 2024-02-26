@@ -74,7 +74,7 @@ app.get("/userdata", async (req, res) => {
 
 app.get("/menulist", async (req, res) => {
   let Menu = await menuService.getMenu();
-  res.render('./menulist.ejs',{message:Menu})
+  res.render('./menulist.ejs',{message:Menu}) 
 
 });
 // app.get('/',async (req,res)=>{

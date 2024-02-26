@@ -1,7 +1,8 @@
 const { verifyToken, createToken } = require("../middlewares/auth");
 const { userService } = require("../services");
 const { findUser } = require("../services/user.service");
-const {send_Mail} = require("../services/email.service")
+const { send_Mail } = require("../services/email.service");
+const user = require("../models/user.model");
 
 /* GET USER */
 
@@ -13,14 +14,15 @@ const getUser = async (req, res) => {
       message: "you are not login",
     });
   }
-
   const user = await userService.getUser();
   console.log(user, "get user");
 
-  res.status(200).json({
-    message: "profile get success",
-    data: user,
-  });
+  res.render("./alluser", { message: user });
+
+  // res.status(200).json({
+  //   message: "profile get success",
+  //   data: user,
+  // });
 };
 
 /* GET USER'S PROFILE */
@@ -38,7 +40,7 @@ const getProfile = async (req, res) => {
 
   console.log(user);
 
-  res.status(200).json({ message: "admin profile get success", user });
+  res.status(200).json({ message: " profile get success", user });
 };
 
 /* ADD or REGISTER USER */
@@ -48,20 +50,20 @@ const addUser = async (req, res) => {
     const body = req.body;
     console.log(body);
 
-    const userExist = await userService.getUserByEmail(body.email);   
+    const userExist = await userService.getUserByEmail(body.email);
     if (userExist) {
-      throw new Error("User Exist Alreadely");                        
+      throw new Error("User Exist Alreadely");
     }
     const user = await userService.addUser(body);
-    if(user){
+    if (user) {
       const email = await send_Mail(user.email);
-      console.log("mail forwered ", email.envelope); /* to & from */            
+      console.log("mail forwered ", email.envelope); /* to & from */
     }
     if (!user) {
       throw new Error("something went wrong");
     }
 
-    res.render('./login')
+    res.render("./login");
 
     // res.status(201).json({
     //   message: "user Created success",
@@ -77,7 +79,7 @@ const loginUser = async (req, res) => {
   const body = req.body;
   const email = req.body.email;
   const password = req.body.password;
-
+  const number = req.body.contactNumber;
   console.log(body);
 
   const findUser = await userService.findUser(email);
@@ -86,7 +88,7 @@ const loginUser = async (req, res) => {
 
   if (!findUser) {
     res.status(500).json({
-      message: "Admin not found",
+      message: "User not found",
     });
   } else {
     if (password === findUser.password) {
@@ -95,6 +97,7 @@ const loginUser = async (req, res) => {
         email: findUser.email,
         contactNumber: findUser.contactNumber,
         role: findUser.role,
+        // number: req.body.contactNumber,
       };
 
       const token = createToken(data);
@@ -114,6 +117,51 @@ const loginUser = async (req, res) => {
 
 /* UPDATE USER */
 
+const updateUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const body = req.body;
+    console.log(id, body);
+
+    if (!user) {
+      throw new Error("something went wrong");
+    }
+    const user = await userService.updateUser(id, body);
+
+    res.status(200).json({
+      message: "User updated success",
+      data: user,
+    });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
+
 /* DELETE USER */
 
-module.exports = { getUser, getProfile, addUser, loginUser };
+const deleteUser = async (req, res) => {
+  try {
+    console.log(req.params);
+    const id = req.params.id;
+
+    const user = await userService.deleteUser(id);
+    if (!user) {
+      throw new Error("something went wrong");
+    }
+
+    res.status(200).json({
+      message: "User delete success",
+      data: user,
+    });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
+module.exports = {
+  getUser,
+  getProfile,
+  addUser,
+  loginUser,
+  updateUser,
+  deleteUser,
+};
