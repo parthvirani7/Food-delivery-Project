@@ -50,5 +50,3 @@ module.exports = {
   send_Mail,
 };
 
-// divyesh gmail id
-// divkakadiyarnw@gmail.com
