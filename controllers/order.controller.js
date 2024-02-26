@@ -19,7 +19,7 @@ const addOrder = async (req, res) => {
     const body = req.body;
     console.log(body);
 
-    const order = await orderService.addorder(body);
+    const order = await orderService.addOrder(body);
 
     if (!order) {
       throw new Error("something went wrong");
@@ -40,7 +40,7 @@ const updateorder = async (req, res) => {
     const id = req.params.id;
     const body = req.body;
     console.log(id, body);
-    const order = await orderService.updateorder(id, body);
+    const order = await orderService.updateOrder(id, body);
 
     res.status(200).json({
       message: "order updated success",
@@ -58,7 +58,7 @@ const deleteorder = async (req, res) => {
     console.log(req.params);
     const id = req.params.id;
 
-    const order = await orderService.deleteorder(id);
+    const order = await orderService.deleteOrder(id);
     if (!order) {
       throw new Error("something went wrong");
     }

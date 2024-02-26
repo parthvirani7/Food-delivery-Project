@@ -1,5 +1,4 @@
-const { menuSchema } = require("../models");
-const { orderSchema } = require("../models/order.model");
+const { orderSchema } = require("../models");
 
 const addOrder = (body) => {
   return orderSchema.create(body);
@@ -7,16 +6,16 @@ const addOrder = (body) => {
 const getOrder = () => {
   return orderSchema
     .find()
+    .populate("restaurant", { restName: 1, location: 1 })
     .populate("user", { firstName: 1, contactNumber: 1 })
-    .populate("mneu", { itemName: 1, price: 1 })
-    .populate("rest", { restName: 1, location: 1 });
+    .populate("menu", { itemName: 1, price: 1 })
 };
 
-const deleteOrder = () => {
-  return orderSchema.findByIdAndDelete();
+const deleteOrder = (id) => {
+  return orderSchema.findByIdAndDelete(id);
 };
-const updateOrder = () => {
-  return orderSchema.findByIdAndUpdate();
+const updateOrder = (id, body) => {
+  return orderSchema.findByIdAndUpdate(id, body);
 };
 
 module.exports = {

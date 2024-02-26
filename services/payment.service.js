@@ -6,8 +6,8 @@ const addPayment = (body) => {
 const getPayment = () => {
   return paymentSchema
     .find()
-    .populate("user", { location: 1, contactNumber: 1 })
-    .populate("order", { coustomer: 1, totalBill: 1 });
+    .populate("order", { customer: 1, totalBill: 1 })
+    .populate("user", { location: 1, contactNumber: 1 });
 };
 const deletePayment = (id) => {
   return paymentSchema.findByIdAndDelete(id);

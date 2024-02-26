@@ -123,26 +123,24 @@
   <body>
     <div class="wrapper">
       <h2>Add Order</h2>
-      <form action="http://localhost:1310/v1/menu/add" method="post">
+      <form action="/v1/order/add" method="post">
         <div class="input-box">
-          <input type="text" placeholder="Total Billing Amount" name="totalBill" required />
+          <input type="number" placeholder="Total Billing Amount" name="totalBill" required />
         </div>
         <div class="input-box">
-          <input type="text" placeholder="Restaurant Address" name="address" required />
+          <input type="text" placeholder="Restaurant Address" name="restaurant" required />
         </div>
         <div class="input-box">
           <input type="text" placeholder="Food Item" name="item" required />
         </div>
         <div class="input-box">
-          <input type="text" placeholder="Coustomer Id" name="coustomer" required />
+          <input type="text" placeholder="Customer Id" name="customer" required />
         </div>
         <div class="input-box">
-          <input
-            type="text"
-            placeholder="Description"
-            name="description"
-            required/>
+          <input type="date" placeholder="Date" name="date" required />
         </div>
+       
+        
         <div class="input-box button">
           <input type="Submit" value="Register Now"/>
         </div>

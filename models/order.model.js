@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
   totalBill: {
-    type: String,
+    type: Number,
     require: true,
   },
-  address: {
+  restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref:"restSchema",
   },
@@ -13,10 +13,16 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "menuSchema",
   },
-  coustomer: {
+  customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "userSchema",
   },
+  date: {
+    type: Date, 
+    required: true,
+    default: Date.now
+  }
+
 });
 const order = mongoose.model("orderScehma", orderSchema);
 module.exports = order;

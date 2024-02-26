@@ -10,7 +10,7 @@ route.post(
   orderController.addOrder
 );
 route.get("/get", orderController.getOrder);
-route.put("/update/:id", orderController.updateorder);
-route.delete("/delete", orderController.deleteorder);
+route.put("/update/:id", validate(orderValidation.addOrder), orderController.updateorder);
+route.delete("/delete/:id", orderController.deleteorder);
 
 module.exports = route;

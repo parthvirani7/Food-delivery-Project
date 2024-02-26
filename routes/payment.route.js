@@ -6,15 +6,14 @@ const route = express.Router();
 
 route.get("/get", paymentController.getPayment);
 route.post("/add", validate(paymentValidation.addPayment), paymentController.addPayment);
-// route.put(
-//   "/update/:id",
-//   validate(paymentValidation.addPayment),
-//   paymentController.updatePayment
-// );
-// route.delete(
-//   "/delete/:id",
-//   validate(paymentValidation.addPayment),  
-//   paymentController.deletePayment
-// );
+route.put(
+  "/update/:id",
+  validate(paymentValidation.addPayment),
+  paymentController.updatePayment
+);
+route.delete(
+  "/delete/:id",
+  paymentController.deletePayment
+);
 
 module.exports = route;

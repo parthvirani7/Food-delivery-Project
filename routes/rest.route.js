@@ -13,7 +13,6 @@ route.put(
 );
 route.delete(
   "/delete/:id",
-  validate(restValidation.addRest),  
   restController.deleteRest
 );
 

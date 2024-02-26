@@ -14,8 +14,9 @@ const paymentSchema = new mongoose.Schema({
     require: true,
   },
   date: {
-    type: String,
-    require: true,
+    type: Date, 
+    required: true,
+    default: Date.now
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
