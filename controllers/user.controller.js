@@ -17,12 +17,12 @@ const getUser = async (req, res) => {
   const user = await userService.getUser();
   console.log(user, "get user");
 
-  res.render("./alluser", { message: user });
+  // res.render("./alluser", { message: user });
 
-  // res.status(200).json({
-  //   message: "profile get success",
-  //   data: user,
-  // });
+  res.status(200).json({
+    message: "profile get success",
+    data: user,
+  });
 };
 
 /* GET USER'S PROFILE */
@@ -63,12 +63,12 @@ const addUser = async (req, res) => {
       throw new Error("something went wrong");
     }
 
-    res.render("./login");
+    // res.render("./login");
 
-    // res.status(201).json({
-    //   message: "user Created success",
-    //   data: user,
-    // });
+    res.status(201).json({
+      message: "user Created success",
+      data: user,
+    });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
   }

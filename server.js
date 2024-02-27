@@ -77,12 +77,7 @@ app.get("/menulist", async (req, res) => {
   res.render('./menulist.ejs',{message:Menu}) 
 
 });
-// app.get('/',async (req,res)=>{
 
-//   let Menu = await menuService.getMenu() 
-
-//   res.render('./allmenu',{message:Menu})
-// })
 //DB connect
 connectDB();
 

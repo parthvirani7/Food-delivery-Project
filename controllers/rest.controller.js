@@ -13,11 +13,10 @@ const addRest = async (req, res) => {
       throw new Error("something went wrong");
     }
 
-    res.render("./data", { rest: rest });
-    // res.status(200).json({
-    //   message: "Restaurant add success",
-    //   data: rest,
-    // });
+    res.status(200).json({
+      message: "Restaurant add success",
+      data: rest,
+    });
   } catch (err) {
     res.status(400).json({
       success: false,
@@ -30,13 +29,12 @@ const addRest = async (req, res) => {
 
 const getRest = async (req, res) => {
   const rest = await restService.getRest();
-  // console.log(rest, "get");
-  res.render("./allrest", { message: rest });
+  console.log(rest, "get");
 
-  // res.status(200).json({
-  //   message: "restaurant get success",
-  //   data: rest,
-  // });
+  res.status(200).json({
+    message: "restaurant get success",
+    data: rest,
+  });
 };
 
 // UPDATE Restarunt

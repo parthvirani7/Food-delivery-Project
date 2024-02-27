@@ -4,14 +4,13 @@ const { menuService } = require("../services");
 
 const getMenu = async (req, res) => {
   const menu = await menuService.getMenu();
-  // console.log(menu, "menu get");
+  console.log(menu, "menu get");
 
-  res.render("./allmenu.ejs", { message: menu });
 
-  // res.status(200).json({
-  //   message: "menu get success",
-  //   data: menu,
-  // });
+  res.status(200).json({
+    message: "menu get success",
+    data: menu,
+  });
 };
 
 // ADD Menu
@@ -26,13 +25,12 @@ const addMenu = async (req, res) => {
     if (!menu) {
       throw new Error("Something went wrong");
     }
-    res.render("./menulist.ejs", { menu: menu });
 
 
-    // res.status(201).json({
-    //   message: "Menu Created success",
-    //   data: menu,
-    // });
+    res.status(201).json({
+      message: "Menu Created success",
+      data: menu,
+    });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
   }
